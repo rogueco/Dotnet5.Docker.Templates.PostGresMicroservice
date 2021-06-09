@@ -1,0 +1,1 @@
+Dotnet5.Docker.Templates.PostGresMicroservice
