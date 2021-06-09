@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data;
+using Dotnet5.Docker.Templates.PostGresMicroservice.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Dotnet5.Docker.Templates.PostGresMicroservice
@@ -26,12 +23,20 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddDbContext<DataContext>(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dotnet5.Docker.Templates.PostGresMicroservice", Version = "v1" });
+                // Default connection is pulled from appsettings.json
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped<ITodoRepository, TodoRepository>();
+            services.AddControllers();
+            services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+            });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Dotnet Simple PostGRES API", Version = "v1"}); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,10 +55,7 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

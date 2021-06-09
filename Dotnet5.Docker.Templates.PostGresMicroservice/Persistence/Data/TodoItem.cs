@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dotnet5.Docker.Templates.PostGresMicroservice.DataContext
+namespace Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data
 {
     public class TodoItem
     {
