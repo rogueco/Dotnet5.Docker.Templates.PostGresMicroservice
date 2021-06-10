@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data;
 using Dotnet5.Docker.Templates.PostGresMicroservice.Repositories;
 using Microsoft.AspNetCore.Mvc;
+
 // ReSharper disable RouteTemplates.RouteParameterConstraintNotResolved
 // ReSharper disable RouteTemplates.ControllerRouteParameterIsNotPassedToMethods
 #endregion
@@ -37,34 +38,34 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Controllers.V1
         /// Simple GET to return a List of Todos
         /// </summary>
         /// <returns>List of TodoItem</returns>
-        [HttpGet]
+        [HttpGet("getAll", Name = "GetAll")]
         [ProducesResponseType(typeof(IEnumerable<TodoItem>), (int) HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetAllTodos()
         {
             IEnumerable<TodoItem> allTodos = await _todoRepository.GetAllTodos();
             return Ok(allTodos);
         }
- 
+
         /// <summary>
         /// Simple GET to return a single TodoItem
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Single TodoItem</returns>
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id:guid}", Name = "GetById")]
         [ProducesResponseType(typeof(TodoItem), (int) HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoById(Guid id)
         {
             TodoItem todoItem = await _todoRepository.GetTodoById(id);
             return Ok(todoItem);
         }
-        
- 
+
+
         /// <summary>
         /// Simple create POST endpoint
         /// </summary>
         /// <param name="todoItem"></param>
         /// <returns>Ok response if successful, or BadRequest if unsuccessful</returns>
-        [HttpPost]
+        [HttpPost("create", Name = "Create")]
         public async Task<ActionResult<TodoItem>> CreateTodo(TodoItem todoItem)
         {
             bool result = await _todoRepository.CreateTodo(todoItem);
@@ -73,9 +74,21 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Controllers.V1
             {
                 return Ok();
             }
+
             return BadRequest();
         }
-        //TODO: Implement Update By {id} REST Endpoint
+
+        /// <summary>
+        /// Simple update PUT endpoint
+        /// </summary>
+        /// <param name="todoItem"></param>
+        /// <returns>Ok response if successful, or BadRequest if unsuccessful</returns>
+        [HttpPut("updateTodo/{guid:id}",Name = "UpdateTodo")]
+        public async Task<ActionResult> UpdateTodoItem(Guid id, TodoItem todoItem)
+        {
+            bool result = await _todoRepository.UpdateTodo(id, todoItem);
+            return result ? Ok() : BadRequest("Something went wrong, please check your model");
+        }
         //TODO: Implement Delete By {id} REST Endpoint
     }
 }

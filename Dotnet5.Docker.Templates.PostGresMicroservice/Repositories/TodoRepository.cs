@@ -42,9 +42,9 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Repositories
             return false;
         }
 
-        public async Task<TodoItem> UpdateTodo(TodoItem todoItem)
+        public async Task<bool> UpdateTodo(Guid id, TodoItem todoItem)
         {
-            TodoItem todoItemToUpdate = await _dataContext.TodoItems.Where(s => s.Id == todoItem.Id).FirstOrDefaultAsync();
+            TodoItem todoItemToUpdate = await _dataContext.TodoItems.Where(s => s.Id == id).FirstOrDefaultAsync();
 
             // TODO: Would be nice to implement Automapper, so you can map these automatically using `.Map(todoItem, todoItemToUpdate);`
             if (todoItemToUpdate != null)
@@ -54,10 +54,10 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Repositories
 
                 // Why this, if we are able to successfully save the changes - we will return true.
                 bool result = await _dataContext.SaveChangesAsync() > 0;
-                return result ? todoItem : null;
+                return result;
             }
 
-            return null;
+            return false;
         }
 
         public async Task<bool> DeleteTodo(Guid id)

@@ -46,7 +46,7 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Repositories
         /// </summary>
         /// <param name="todoItem"></param>
         /// <returns>Returns updated TodoItem</returns>
-        Task<TodoItem> UpdateTodo(TodoItem todoItem);
+        Task<bool> UpdateTodo(Guid id, TodoItem todoItem);
         
         /// <summary>
         /// Simple Delete Method that expects an a TodoItem's id
