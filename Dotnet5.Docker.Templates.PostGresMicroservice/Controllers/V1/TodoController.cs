@@ -56,7 +56,7 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Controllers.V1
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoById(Guid id)
         {
             TodoItem todoItem = await _todoRepository.GetTodoById(id);
-            return Ok(todoItem);
+            return todoItem != null ? Ok(todoItem) : BadRequest("Todo item does not exist");
         }
 
 
@@ -81,14 +81,26 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Controllers.V1
         /// <summary>
         /// Simple update PUT endpoint
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="todoItem"></param>
         /// <returns>Ok response if successful, or BadRequest if unsuccessful</returns>
-        [HttpPut("updateTodo/{guid:id}",Name = "UpdateTodo")]
+        [HttpPut("updateTodo/{id:guid}",Name = "UpdateTodo")]
         public async Task<ActionResult> UpdateTodoItem(Guid id, TodoItem todoItem)
         {
             bool result = await _todoRepository.UpdateTodo(id, todoItem);
             return result ? Ok() : BadRequest("Something went wrong, please check your model");
         }
-        //TODO: Implement Delete By {id} REST Endpoint
+
+        /// <summary>
+        /// Simple DELETE endpoint
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Ok response if successful, or BadRequest if unsuccessful</returns>
+        [HttpDelete("{id:guid}", Name = "DeleteTodo")]
+        public async Task<ActionResult> DeleteTodo(Guid id)
+        {
+            bool result = await _todoRepository.DeleteTodo(id);
+            return result ? Ok() : BadRequest("Something went wrong, please check your model");
+        }
     }
 }
