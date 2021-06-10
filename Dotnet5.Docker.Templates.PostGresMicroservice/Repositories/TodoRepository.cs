@@ -1,13 +1,20 @@
-﻿// File Created By Thomas Fletcher
+﻿// -----------------------------------------------------------------------
+// <copyright company="N/A." file="TodoRepository.cs">
+// </copyright>
+// <author>
+// Thomas Fletcher, Average Developer
+// tom@tom-fletcher.co.uk
+// </author>
+// -----------------------------------------------------------------------
 
+#region usings
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+#endregion
 
 namespace Dotnet5.Docker.Templates.PostGresMicroservice.Repositories
 {
