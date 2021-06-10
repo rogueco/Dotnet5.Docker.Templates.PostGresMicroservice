@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------
 
 #region Usings
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -43,8 +44,19 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Controllers.V1
             IEnumerable<TodoItem> allTodos = await _todoRepository.GetAllTodos();
             return Ok(allTodos);
         }
-        
-        //TODO: Implement GET by {id} REST Endpoint
+ 
+        /// <summary>
+        /// Simple GET to return a single TodoItem
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Single TodoItem</returns>
+        [HttpGet("{id:guid}")]
+        [ProducesResponseType(typeof(IEnumerable<TodoItem>), (int) HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoById(Guid id)
+        {
+            TodoItem todoItem = await _todoRepository.GetTodoById(id);
+            return Ok(todoItem);
+        }
         //TODO: Implement Create REST Endpoint
         //TODO: Implement Update By {id} REST Endpoint
         //TODO: Implement Delete By {id} REST Endpoint
