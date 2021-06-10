@@ -33,8 +33,13 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Repositories
 
         public async Task<bool> CreateTodo(TodoItem todoItem)
         {
-            await _dataContext.TodoItems.AddAsync(todoItem);
-            return await _dataContext.SaveChangesAsync() > 0;
+            if (todoItem.Name.Length > 0)
+            {
+                await _dataContext.TodoItems.AddAsync(todoItem);
+                return await _dataContext.SaveChangesAsync() > 0;
+            }
+
+            return false;
         }
 
         public async Task<TodoItem> UpdateTodo(TodoItem todoItem)

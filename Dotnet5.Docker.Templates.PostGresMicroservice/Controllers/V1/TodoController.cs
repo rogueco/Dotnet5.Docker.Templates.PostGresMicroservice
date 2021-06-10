@@ -51,13 +51,30 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Controllers.V1
         /// <param name="id"></param>
         /// <returns>Single TodoItem</returns>
         [HttpGet("{id:guid}")]
-        [ProducesResponseType(typeof(IEnumerable<TodoItem>), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(TodoItem), (int) HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoById(Guid id)
         {
             TodoItem todoItem = await _todoRepository.GetTodoById(id);
             return Ok(todoItem);
         }
-        //TODO: Implement Create REST Endpoint
+        
+ 
+        /// <summary>
+        /// Simple create POST endpoint
+        /// </summary>
+        /// <param name="todoItem"></param>
+        /// <returns>Ok response if successful, or BadRequest if unsuccessful</returns>
+        [HttpPost]
+        public async Task<ActionResult<TodoItem>> CreateTodo(TodoItem todoItem)
+        {
+            bool result = await _todoRepository.CreateTodo(todoItem);
+
+            if (result)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
         //TODO: Implement Update By {id} REST Endpoint
         //TODO: Implement Delete By {id} REST Endpoint
     }
