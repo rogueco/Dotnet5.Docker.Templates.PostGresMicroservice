@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  todoMicroserviceDb:
+    image: postgres
+  
+  dotnet5.api:
+    image: ${DOCKER_REGISTRY-}dotnet5dockertemplatespostgresmicroservice
+    build:
+      context: .
+      dockerfile: Dotnet5.Docker.Templates.PostGresMicroservice/Dockerfile
+      
+volumes:
+  postgres_data:

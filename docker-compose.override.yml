@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  todoMicroserviceDb:
+    container_name: todoMicroserviceDb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=TodoMicroserviceDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  dotnet5.api:
+    container_name: dotnet5.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DefaultConnection:Server=todoMicroserviceDb;Port=5432;User Id=admin;Password=admin1234;Database=TodoMicroserviceDb"
+    depends_on:
+      - todoMicroserviceDb
+    ports:
+      - "8001:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
