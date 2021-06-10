@@ -29,7 +29,7 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Repositories
 
         public async Task<IEnumerable<TodoItem>> GetAllTodos() => await _dataContext.TodoItems.ToListAsync();
 
-        public async Task<TodoItem> GetTodoById(Guid id) => await _dataContext.TodoItems.SingleAsync(x => x.Id == id);
+        public async Task<TodoItem> GetTodoById(Guid id) => await _dataContext.TodoItems.FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<bool> CreateTodo(TodoItem todoItem)
         {
