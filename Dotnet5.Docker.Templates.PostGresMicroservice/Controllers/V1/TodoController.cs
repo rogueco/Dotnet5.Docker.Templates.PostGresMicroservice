@@ -1,4 +1,13 @@
-﻿#region Usings
+﻿// -----------------------------------------------------------------------
+// <copyright company="N/A." file="TodoController.cs">
+// </copyright>
+// <author>
+// Thomas Fletcher, Average Developer
+// tom@tom-fletcher.co.uk
+// </author>
+// -----------------------------------------------------------------------
+
+#region Usings
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -23,6 +32,10 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Controllers.V1
             _todoRepository = todoRepository;
         }
 
+        /// <summary>
+        /// Simple GET to return a List of Todos
+        /// </summary>
+        /// <returns>List of TodoItem</returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<TodoItem>), (int) HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetAllTodos()
@@ -30,5 +43,9 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice.Controllers.V1
             IEnumerable<TodoItem> allTodos = await _todoRepository.GetAllTodos();
             return Ok(allTodos);
         }
+        
+        //TODO: Implement GET by {id} REST Endpoint
+        //TODO: Implement Update By {id} REST Endpoint
+        //TODO: Implement Delete By {id} REST Endpoint
     }
 }
