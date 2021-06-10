@@ -1,11 +1,19 @@
-﻿// File Created By Thomas Fletcher
+﻿// -----------------------------------------------------------------------
+// <copyright company="N/A." file="TodoSeedDataContext.cs">
+// </copyright>
+// <author>
+// Thomas Fletcher, Average Developer
+// tom@tomfletcher.tech
+// </author>
+// -----------------------------------------------------------------------
 
+#region usings
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data;
-using Microsoft.EntityFrameworkCore;
+#endregion
 
 namespace Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Seed
 {

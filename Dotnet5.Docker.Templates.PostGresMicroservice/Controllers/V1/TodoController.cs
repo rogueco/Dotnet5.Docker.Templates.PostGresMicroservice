@@ -3,7 +3,7 @@
 // </copyright>
 // <author>
 // Thomas Fletcher, Average Developer
-// tom@tom-fletcher.co.uk
+// tom@tomfletcher.tech
 // </author>
 // -----------------------------------------------------------------------
 

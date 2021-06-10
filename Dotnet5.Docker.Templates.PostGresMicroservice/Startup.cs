@@ -1,3 +1,13 @@
+// -----------------------------------------------------------------------
+// <copyright company="N/A." file="Startup.cs">
+// </copyright>
+// <author>
+// Thomas Fletcher, Average Developer
+// tom@tomfletcher.tech
+// </author>
+// -----------------------------------------------------------------------
+
+#region usings
 using Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data;
 using Dotnet5.Docker.Templates.PostGresMicroservice.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+#endregion
 
 namespace Dotnet5.Docker.Templates.PostGresMicroservice
 {

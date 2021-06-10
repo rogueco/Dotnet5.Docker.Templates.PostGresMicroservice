@@ -1,6 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// -----------------------------------------------------------------------
+// <copyright company="N/A." file="DataContext.cs">
+// </copyright>
+// <author>
+// Thomas Fletcher, Average Developer
+// tom@tomfletcher.tech
+// </author>
+// -----------------------------------------------------------------------
+
+#region usings
 using Microsoft.EntityFrameworkCore;
+#endregion
 
 namespace Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data
 {

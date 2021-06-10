@@ -1,4 +1,15 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------
+// <copyright company="N/A." file="TodoItem.cs">
+// </copyright>
+// <author>
+// Thomas Fletcher, Average Developer
+// tom@tomfletcher.tech
+// </author>
+// -----------------------------------------------------------------------
+
+#region usings
+using System;
+#endregion
 
 namespace Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data
 {

@@ -1,16 +1,23 @@
+// -----------------------------------------------------------------------
+// <copyright company="N/A." file="Program.cs">
+// </copyright>
+// <author>
+// Thomas Fletcher, Average Developer
+// tom@tomfletcher.tech
+// </author>
+// -----------------------------------------------------------------------
+
+#region usings
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Data;
 using Dotnet5.Docker.Templates.PostGresMicroservice.Persistence.Seed;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+#endregion
 
 namespace Dotnet5.Docker.Templates.PostGresMicroservice
 {
