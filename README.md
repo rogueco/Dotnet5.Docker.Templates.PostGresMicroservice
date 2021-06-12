@@ -1,5 +1,8 @@
-## What the purpose
+## Whats the purpose
 Essentially, I'm going to put together a collection of small Docker contained Microservices for a reference or quickstart guide
+
+![image](https://user-images.githubusercontent.com/38529232/121787722-bcb36e80-cbbf-11eb-8ec7-fe0bc399b21c.png)
+
 
 ## Run Project
 Just run from the root directory & the applicaiton will build
