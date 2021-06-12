@@ -53,6 +53,7 @@ namespace Dotnet5.Docker.Templates.PostGresMicroservice
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            DataManagementMigration.MigrationInitialisation(app);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
