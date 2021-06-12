@@ -1,7 +1,23 @@
 ## What the purpose
 Essentially, I'm going to put together a collection of small Docker contained Microservices for a reference or quickstart guide
 
+## Run Project
+Just run from the root directory & the applicaiton will build
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+```
+
+
 ## Database Connection
+To look at the database you can use the following connections (Please note that you'll need to have the image running to connect)
+
+```bash
+Username: admin
+Password: admin1234
+Port: 5432
+```
+
 
 ### Docker Image
 
