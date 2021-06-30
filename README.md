@@ -1,6 +1,8 @@
 ## Whats the purpose
 Essentially, I'm going to put together a collection of small Docker contained Microservices for a reference or quickstart guide
 
+### Path: http://localhost:8001/swagger/index.html
+
 ![image](https://user-images.githubusercontent.com/38529232/121787722-bcb36e80-cbbf-11eb-8ec7-fe0bc399b21c.png)
 
 
